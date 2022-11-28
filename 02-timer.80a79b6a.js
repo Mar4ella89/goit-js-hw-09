@@ -1,0 +1,2 @@
+!function(){var t={btnStart:document.querySelector("button[data-start]"),outputeValue:document.querySelector(".timer")};console.log(t.btnStart);function o(t){var o=6e4,e=36e5,n=24*e;return{days:Math.floor(t/n),hours:Math.floor(t%n/e),minutes:Math.floor(t%n%e/o),seconds:Math.floor(t%n%e%o/1e3)}}t.btnStart.addEventListener("click",(function(){})),console.log(o(2e3)),console.log(o(14e4)),console.log(o(2414e4))}();
+//# sourceMappingURL=02-timer.80a79b6a.js.map
