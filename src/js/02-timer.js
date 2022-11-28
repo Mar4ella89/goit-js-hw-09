@@ -18,10 +18,17 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     if (selectedDates[0] < new Date()) {
-      window.alert('Error');
+      Notiflix.Notify.failure('Please choose a date in the future', {
+        clickToClose: true,
+        timeout: 3000,
+      });
       return;
     }
     refs.btnStart.removeAttribute('disabled');
+    Notiflix.Notify.success('Correct date', {
+      clickToClose: true,
+      timeout: 3000,
+    });
   },
 };
 
@@ -67,12 +74,15 @@ const timer = {
       refs.btnStart.setAttribute('disabled', true);
 
       const currentTime = Date.now();
-      console.log(currentTime);
-
       const startTime = selectTime.latestSelectedDateObj.getTime();
-      console.log(startTime);
 
       if (startTime < currentTime) {
+        clearInterval(timerId);
+        Notiflix.Notify.info('Complete Countdown', {
+          clickToClose: true,
+          timeout: 3000,
+        });
+
         return;
       }
 
@@ -86,11 +96,6 @@ const timer = {
 
 const onBtnClickStartTimer = () => {
   timer.start();
-  clearInterval(timerId);
 };
 
 refs.btnStart.addEventListener('click', onBtnClickStartTimer);
-
-Notiflix.Notify.success('Click Me', {
-  timeout: 6000,
-});
